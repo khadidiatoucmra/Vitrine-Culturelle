@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitrine Culture | Notre Équipe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <style>
+        :root {
+            --primary: #6C4B5E;  /* Mauve profond */
+            --primary-dark: #4D3445;
+            --primary-light: #8D6B7D;
+            --secondary: #E8C547;  /* Or vif */
+            --secondary-dark: #D9B43A;
+            --accent: #3A7CA5;  /* Bleu sénégalais */
+            --dark: #1E1E24;  /* Noir élégant */
+            --darker: #121216;
+            --light: #F9F7F8;  /* Blanc crème */
+            --lighter: #FFFFFF;
+            --text: #333333;
+            --text-light: #777777;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background-color: var(--lighter);
+            line-height: 1.7;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: 0.5px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.85rem;
+            border: 2px solid var(--primary);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--primary-dark);
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(108, 75, 94, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-outline::before {
+            background-color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            color: var(--dark);
+        }
+
+        .btn-secondary::before {
+            background-color: var(--secondary-dark);
+        }
+
+        .btn-secondary:hover {
+            color: var(--dark);
+        }
+
+        .section-padding {
+            padding: 120px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Header Styles */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 25px 0;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            backdrop-filter: blur(10px);
+            background-color: rgba(30, 30, 36, 0.8);
+        }
+
+        #header.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            background-color: rgba(248, 247, 249, 0.98);
+        }
+
+        #header.scrolled .logo-text {
+            color: var(--dark);
+        }
+
+        #header.scrolled #mainNav ul li a {
+            color: var(--dark);
+        }
+
+        #header.scrolled .mobile-menu-btn {
+            color: var(--dark);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 50px;
+            transition: all 0.4s ease;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white;
+            transition: all 0.4s ease;
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+        }
+
+        #mainNav ul {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        #mainNav ul li a {
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            color: white;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        #mainNav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        #mainNav ul li a:hover::after,
+        #mainNav ul li a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta .btn {
+            padding: 12px 30px;
+            font-size: 0.8rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-menu-close {
+            display: none;
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: var(--dark);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Team Hero Section */
+        .team-hero {
+            height: 90vh;
+            min-height: 500px;
+            background: linear-gradient(rgba(30, 30, 36, 0.7), rgba(30, 30, 36, 0.7)), 
+                        url('images/1.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            color: white;
+        }
+
+        .team-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 20% 50%, transparent 0%, rgba(30, 30, 36, 0.9) 100%);
+            z-index: 1;
+        }
+
+        .team-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .team-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        /* Team Page Styles */
+        .team-page {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-intro {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+
+        .team-intro p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-member-img {
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .team-member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .team-member:hover .team-member-img img {
+            transform: scale(1.1);
+        }
+
+        .team-member-social {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .team-member:hover .team-member-social {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .team-member-social a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .team-member-social a:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .team-member-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .team-member-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .team-member-info p.position {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .team-member-info .bio {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .partners {
+            margin-top: 100px;
+            padding-top: 80px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .partners-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .partner-logo {
+            max-width: 180px;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 100px 0 0;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+
+        .footer-col {
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            margin-bottom: 25px;
+            height: 60px;
+        }
+
+        .footer-about p {
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            font-size: 1.1rem;
+        }
+
+        .footer-social a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-col h4 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.05rem;
+        }
+
+        .footer-links ul li a:hover {
+            color: white;
+            padding-left: 10px;
+        }
+
+        .footer-links ul li a i {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-contact p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .footer-contact p i {
+            color: var(--secondary);
+            margin-top: 5px;
+            font-size: 1.1rem;
+        }
+
+        .footer-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .footer-gallery img {
+            border-radius: 8px;
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        .footer-gallery img:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .footer-bottom {
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+        }
+
+        .footer-bottom a {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 2px solid white;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .team-hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .section-padding {
+                padding: 100px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            #mainNav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 320px;
+                height: 100vh;
+                background-color: var(--lighter);
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+                transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+                z-index: 1000;
+                padding: 100px 40px;
+            }
+
+            #mainNav.active {
+                right: 0;
+            }
+
+            #mainNav ul {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .mobile-menu-close {
+                display: block;
+            }
+
+            .team-hero {
+                height: 50vh;
+                min-height: 400px;
+            }
+
+            .team-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .team-hero p {
+                font-size: 1.1rem;
+            }
+
+            .team-member-img {
+                height: 300px;
+            }
+
+            .partners-grid {
+                gap: 25px;
+            }
+
+            .partner-logo {
+                max-width: 120px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-padding {
+                padding: 80px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .team-hero {
+                min-height: 350px;
+            }
+
+            .team-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .back-to-top {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Vitrine Culture Logo" width="200">
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <button class="mobile-menu-close" id="mobileMenuClose">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="about.html">À propos</a></li>
+                    <li><a href="events.html">Événements</a></li>
+                    <li><a href="gallery.html">Galerie</a></li>
+                    <li><a href="team.html" class="active">Équipe</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="nav-cta"><a href="events.html" class="btn">Programme</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Team Hero Section -->
+    <section class="team-hero">
+        <div class="container">
+            <h1>Notre Équipe</h1>
+            <p>Découvrez les passionnés qui organisent et animent les rencontres Vitrine Culture.</p>
+            <a href="#team-members" class="btn">Rencontrer l'équipe</a>
+        </div>
+    </section>
+
+    <!-- Team Members Section -->
+    <section class="team-page section-padding" id="team-members">
+        <div class="container">
+            <div class="section-title">
+                <h2>L'Équipe Vitrine Culture</h2>
+                <p>Une équipe dévouée à la promotion de la culture saint-louisienne</p>
+            </div>
+            
+            <div class="team-intro">
+                <p>Derrière chaque événement Vitrine Culture se cache une équipe passionnée et engagée, travaillant sans relâche pour créer des rencontres mémorables entre les artistes et le public. Découvrez les visages et les parcours de ceux qui font vivre cette aventure culturelle.</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-member-img">
+                        <img src="images/12.jpg" alt="Mamadou Diallo">
+                        <div class="team-member-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3>Mamadou Diallo</h3>
+                        <p class="position">Fondateur & Directeur</p>
+                        <div class="bio">
+                            Fondateur de Vitrine Culture, Mamadou est un passionné de culture sénégalaise avec plus de 15 ans d'expérience dans l'organisation d'événements culturels.
+                        </div>
+                        <a href="#" class="btn btn-outline">Voir profil complet</a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-img">
+                        <img src="images/13.jpg" alt="Aminata Sow">
+                        <div class="team-member-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3>Aminata Sow</h3>
+                        <p class="position">Coordinatrice Artistique</p>
+                        <div class="bio">
+                            Aminata est responsable de la programmation artistique et des relations avec les artistes. Diplômée en arts plastiques, elle a un œil avisé pour dénicher les talents.
+                        </div>
+                        <a href="#" class="btn btn-outline">Voir profil complet</a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-img">
+                        <img src="images/14.jpeg" alt="Ibrahima Ndiaye">
+                        <div class="team-member-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3>Ibrahima Ndiaye</h3>
+                        <p class="position">Responsable Technique</p>
+                        <div class="bio">
+                            Ibrahima gère tout l'aspect technique des événements, du son à la lumière en passant par les diffusions en direct sur les réseaux sociaux.
+                        </div>
+                        <a href="#" class="btn btn-outline">Voir profil complet</a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-img">
+                        <img src="images/15.png" alt="Sokhna Diop">
+                        <div class="team-member-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3>Sokhna Diop</h3>
+                        <p class="position">Community Manager</p>
+                        <div class="bio">
+                            Sokhna anime nos réseaux sociaux et s'assure que chaque événement soit bien relayé auprès de notre communauté en ligne.
+                        </div>
+                        <a href="#" class="btn btn-outline">Voir profil complet</a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-img">
+                        <img src="images/16.jpeg" alt="Papa Gueye">
+                        <div class="team-member-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3>Papa Gueye</h3>
+                        <p class="position">Responsable Logistique</p>
+                        <div class="bio">
+                            Papa veille au bon déroulement matériel de chaque événement, de l'accueil du public à la gestion des lieux.
+                        </div>
+                        <a href="#" class="btn btn-outline">Voir profil complet</a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-img">
+                        <img src="images/17.jpeg" alt="Fatou Bâ">
+                        <div class="team-member-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member-info">
+                        <h3>Fatou Bâ</h3>
+                        <p class="position">Chargée de Communication</p>
+                        <div class="bio">
+                            Fatou s'occupe des relations presse, de la rédaction des contenus et de la coordination avec nos partenaires médias.
+                        </div>
+                        <a href="#" class="btn btn-outline">Voir profil complet</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="partners">
+                <div class="section-title">
+                    <h2>Nos Partenaires</h2>
+                    <p>Institutions et organisations qui soutiennent notre initiative</p>
+                </div>
+                
+                <div class="partners-grid">
+                    <img src="images/p1.jpeg" alt="Partenaire 1" class="partner-logo">
+                    <img src="images/p2.jpeg" alt="Partenaire 2" class="partner-logo">
+                    <img src="images/p3.png" alt="Partenaire 3" class="partner-logo">
+                    <img src="images/p4.png" alt="Partenaire 4" class="partner-logo">
+                    <img src="images/p5.png" alt="Partenaire 5" class="partner-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col footer-about">
+                    <img src="images/logo.png" width="200" alt="Vitrine Culture Logo" class="footer-logo">
+                    <p>Vitrine Culture est une initiative culturelle innovante basée à Saint-Louis, Sénégal, dédiée à la promotion et à la célébration des artistes et créateurs locaux à travers des rencontres intimistes et des événements exclusifs.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> Notre mission</a></li>
+                        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Événements</a></li>
+                        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Galerie photos</a></li>
+                        <li><a href="team.html"><i class="fas fa-chevron-right"></i> Notre équipe</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Nous contacter</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col footer-contact">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Espace culturel Saint-Louis Théâtre, Rue Blaise Diagne, Saint-Louis, Sénégal</p>
+                    <p><i class="fas fa-phone-alt"></i> +221 33 876 54 32</p>
+                    <p><i class="fas fa-envelope"></i> contact@vitrineculture.sn</p>
+                    <p><i class="fas fa-clock"></i> Lundi-Vendredi: 9h-18h | Samedi: 10h-16h</p>
+                </div>
+                
+                <div class="footer-col footer-gallery-col">
+                    <h4>Notre univers</h4>
+                    <div class="footer-gallery">
+                        <img src="images/6.jpeg" alt="Événement 1">
+                        <img src="images/7.jpeg" alt="Événement 2">
+                        <img src="images/8.jpeg" alt="Événement 3">
+                        <img src="images/9.jpeg" alt="Événement 4">
+                        <img src="images/10.jpeg" alt="Événement 5">
+                        <img src="images/11.jpeg" alt="Événement 6">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Vitrine Culture. Tous droits réservés. | Conçu avec <i class="fas fa-heart"></i> par <a href="#">Studio Créatif</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mainNav = document.getElementById('mainNav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mainNav.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    mainNav.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Animation on Scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.team-member');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state for animated elements
+        document.querySelectorAll('.team-member').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>

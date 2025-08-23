@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitrine Culture | Galerie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C4B5E;  /* Mauve profond */
+            --primary-dark: #4D3445;
+            --primary-light: #8D6B7D;
+            --secondary: #E8C547;  /* Or vif */
+            --secondary-dark: #D9B43A;
+            --accent: #3A7CA5;  /* Bleu sénégalais */
+            --dark: #1E1E24;  /* Noir élégant */
+            --darker: #121216;
+            --light: #F9F7F8;  /* Blanc crème */
+            --lighter: #FFFFFF;
+            --text: #333333;
+            --text-light: #777777;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background-color: var(--lighter);
+            line-height: 1.7;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: 0.5px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.85rem;
+            border: 2px solid var(--primary);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--primary-dark);
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(108, 75, 94, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-outline::before {
+            background-color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            color: var(--dark);
+        }
+
+        .btn-secondary::before {
+            background-color: var(--secondary-dark);
+        }
+
+        .btn-secondary:hover {
+            color: var(--dark);
+        }
+
+        .section-padding {
+            padding: 120px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Header Styles */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 25px 0;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            backdrop-filter: blur(10px);
+            background-color: rgba(30, 30, 36, 0.8);
+        }
+
+        #header.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            background-color: rgba(248, 247, 249, 0.98);
+        }
+
+        #header.scrolled .logo-text {
+            color: var(--dark);
+        }
+
+        #header.scrolled #mainNav ul li a {
+            color: var(--dark);
+        }
+
+        #header.scrolled .mobile-menu-btn {
+            color: var(--dark);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 50px;
+            transition: all 0.4s ease;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white;
+            transition: all 0.4s ease;
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+        }
+
+        #mainNav ul {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        #mainNav ul li a {
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            color: white;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        #mainNav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        #mainNav ul li a:hover::after,
+        #mainNav ul li a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta .btn {
+            padding: 12px 30px;
+            font-size: 0.8rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-menu-close {
+            display: none;
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: var(--dark);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Gallery Hero */
+        .gallery-hero {
+            height: 90vh;
+            min-height: 500px;
+            background: linear-gradient(rgba(30, 30, 36, 0.7), rgba(30, 30, 36, 0.7)), 
+                        url('images/1.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            
+        }
+
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 20% 50%, transparent 0%, rgba(30, 30, 36, 0.9) 100%);
+            z-index: 1;
+        }
+
+        .gallery-hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .gallery-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .gallery-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        /* Gallery Filter */
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .gallery-filter-btn {
+            padding: 12px 30px;
+            background: var(--lighter);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .gallery-filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: -1;
+        }
+
+        .gallery-filter-btn:hover::before {
+            width: 100%;
+        }
+
+        .gallery-filter-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 5px 20px rgba(108, 75, 94, 0.3);
+            border-color: transparent;
+        }
+
+        .gallery-filter-btn.active::before {
+            width: 100%;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 25px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h4 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            transform: translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .gallery-overlay p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            transform: translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) 0.1s;
+        }
+
+        .gallery-item:hover .gallery-overlay h4,
+        .gallery-item:hover .gallery-overlay p {
+            transform: translateY(0);
+        }
+
+        /* Video Gallery */
+        .video-gallery {
+            margin-top: 80px;
+            padding-top: 80px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .video-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: var(--lighter);
+        }
+
+        .video-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(232, 197, 71, 0.9);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--dark);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 2;
+        }
+
+        .video-item:hover .video-play {
+            background: var(--secondary);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-info {
+            padding: 25px;
+            background: var(--lighter);
+        }
+
+        .video-info h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .video-info p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 100px 0 0;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+
+        .footer-col {
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            margin-bottom: 25px;
+            height: 60px;
+        }
+
+        .footer-about p {
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            font-size: 1.1rem;
+        }
+
+        .footer-social a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-col h4 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            color: white;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.05rem;
+        }
+
+        .footer-links ul li a:hover {
+            color: white;
+            padding-left: 10px;
+        }
+
+        .footer-links ul li a i {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-contact p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .footer-contact p i {
+            color: var(--secondary);
+            margin-top: 5px;
+            font-size: 1.1rem;
+        }
+
+        .footer-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .footer-gallery img {
+            border-radius: 8px;
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        .footer-gallery img:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .footer-bottom {
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+        }
+
+        .footer-bottom a {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 2px solid white;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .gallery-hero h1 {
+                font-size: 3.2rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .section-padding {
+                padding: 100px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            #mainNav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 320px;
+                height: 100vh;
+                background-color: var(--lighter);
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+                transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+                z-index: 1000;
+                padding: 100px 40px;
+            }
+
+            #mainNav.active {
+                right: 0;
+            }
+
+            #mainNav ul {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .mobile-menu-close {
+                display: block;
+            }
+
+            .gallery-hero {
+                height: 50vh;
+                min-height: 400px;
+            }
+
+            .gallery-hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .gallery-hero p {
+                font-size: 1.1rem;
+            }
+
+            .gallery-filter {
+                gap: 10px;
+            }
+
+            .gallery-filter-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-padding {
+                padding: 80px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .gallery-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .gallery-hero p {
+                font-size: 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .back-to-top {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Vitrine Culture Logo" width="200">
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <button class="mobile-menu-close" id="mobileMenuClose">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="about.html">À propos</a></li>
+                    <li><a href="events.html">Événements</a></li>
+                    <li><a href="gallery.html" class="active">Galerie</a></li>
+                    <li><a href="team.html">Équipe</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="nav-cta"><a href="events.html" class="btn">Programme</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="gallery-hero">
+        <div class="container gallery-hero-content">
+            <h1>Galerie Média</h1>
+            <p>Revivez les moments forts de nos précédentes rencontres culturelles à travers ces images et vidéos.</p>
+            <a href="#photo-gallery" class="btn">Explorer la galerie</a>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="section-padding" id="photo-gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Galerie Photo</h2>
+                <p>Explorez nos albums photos classés par événement et artiste.</p>
+            </div>
+            
+            <div class="gallery-filter">
+                <button class="gallery-filter-btn active">Tous</button>
+                <button class="gallery-filter-btn">Concerts</button>
+                <button class="gallery-filter-btn">Rencontres</button>
+                <button class="gallery-filter-btn">Expositions</button>
+                <button class="gallery-filter-btn">Ateliers</button>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Rencontre littéraire -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80" alt="Rencontre littéraire à Saint-Louis">
+                    <div class="gallery-overlay">
+                        <h4>Rencontre avec Awa Ly</h4>
+                        <p>28 Octobre 2023</p>
+                    </div>
+                </div>
+                
+                <!-- Concert musique sénégalaise -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Concert de musique sénégalaise">
+                    <div class="gallery-overlay">
+                        <h4>Concert de Pape Diouf</h4>
+                        <p>30 Septembre 2023</p>
+                    </div>
+                </div>
+                
+                <!-- Soirée poésie -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Soirée poétique à Saint-Louis">
+                    <div class="gallery-overlay">
+                        <h4>Soirée poésie bilingue</h4>
+                        <p>26 Août 2023</p>
+                    </div>
+                </div>
+                
+                <!-- Art contemporain -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Table ronde sur l'art contemporain">
+                    <div class="gallery-overlay">
+                        <h4>Table ronde sur l'art contemporain</h4>
+                        <p>29 Juillet 2023</p>
+                    </div>
+                </div>
+                
+                <!-- Danse traditionnelle -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Danse traditionnelle sabar">
+                    <div class="gallery-overlay">
+                        <h4>Performance de danse Sabar</h4>
+                        <p>24 Juin 2023</p>
+                    </div>
+                </div>
+                
+                <!-- Exposition art -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Exposition d'art sénégalais">
+                    <div class="gallery-overlay">
+                        <h4>Exposition Ousmane Ndiaye</h4>
+                        <p>27 Mai 2023</p>
+                    </div>
+                </div>
+                
+                <!-- Atelier écriture -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Atelier d'écriture créative">
+                    <div class="gallery-overlay">
+                        <h4>Atelier d'écriture créative</h4>
+                        <p>29 Avril 2023</p>
+                    </div>
+                </div>
+                
+                <!-- Projection cinéma -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Projection de film africain">
+                    <div class="gallery-overlay">
+                        <h4>Projection-débat</h4>
+                        <p>25 Mars 2023</p>
+                    </div>
+                </div>
+                
+                <!-- Rencontre auteur -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1581726690015-c9861fa5057f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rencontre avec un auteur sénégalais">
+                    <div class="gallery-overlay">
+                        <h4>Rencontre avec Mamadou Diallo</h4>
+                        <p>25 Février 2023</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="video-gallery">
+                <div class="section-title">
+                    <h2>Galerie Vidéo</h2>
+                    <p>Découvrez les extraits vidéo de nos événements passés.</p>
+                </div>
+                
+                <div class="video-grid">
+                    <!-- Performance musicale -->
+                    <div class="video-item">
+                        <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Performance musicale sénégalaise">
+                        <div class="video-play">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="video-info">
+                            <h4>Performance de Cheikh Tidiane Fall</h4>
+                            <p>28 Octobre 2023 - 5:32</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Lecture poétique -->
+                    <div class="video-item">
+                        <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Lecture poétique">
+                        <div class="video-play">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="video-info">
+                            <h4>Lecture poétique de Awa Ly</h4>
+                            <p>30 Septembre 2023 - 8:15</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Débat artistique -->
+                    <div class="video-item">
+                        <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Débat sur l'art contemporain">
+                        <div class="video-play">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="video-info">
+                            <h4>Discussion sur l'art contemporain</h4>
+                            <p>29 Juillet 2023 - 12:45</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col footer-about">
+                    <img src="images/logo.png" width="200" alt="Vitrine Culture Logo" class="footer-logo">
+                    <p>Vitrine Culture est une initiative culturelle innovante basée à Saint-Louis, Sénégal, dédiée à la promotion et à la célébration des artistes et créateurs locaux à travers des rencontres intimistes et des événements exclusifs.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> Notre mission</a></li>
+                        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Événements</a></li>
+                        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Galerie photos</a></li>
+                        <li><a href="team.html"><i class="fas fa-chevron-right"></i> Notre équipe</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Nous contacter</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col footer-contact">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Espace culturel Saint-Louis Théâtre, Rue Blaise Diagne, Saint-Louis, Sénégal</p>
+                    <p><i class="fas fa-phone-alt"></i> +221 33 876 54 32</p>
+                    <p><i class="fas fa-envelope"></i> contact@vitrineculture.sn</p>
+                    <p><i class="fas fa-clock"></i> Lundi-Vendredi: 9h-18h | Samedi: 10h-16h</p>
+                </div>
+                
+                <div class="footer-col footer-gallery-col">
+                    <h4>Notre univers</h4>
+                    <div class="footer-gallery">
+                        <img src="images/6.jpeg" alt="Événement 1">
+                        <img src="images/7.jpeg" alt="Événement 2">
+                        <img src="images/8.jpeg" alt="Événement 3">
+                        <img src="images/9.jpeg" alt="Événement 4">
+                        <img src="images/10.jpeg" alt="Événement 5">
+                        <img src="images/11.jpeg" alt="Événement 6">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Vitrine Culture. Tous droits réservés. | Conçu avec <i class="fas fa-heart"></i> par <a href="#">Studio Créatif</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mainNav = document.getElementById('mainNav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mainNav.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Gallery filter functionality
+        const filterButtons = document.querySelectorAll('.gallery-filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.textContent.toLowerCase();
+                const galleryItems = document.querySelectorAll('.gallery-item');
+                
+                if (filter === 'tous') {
+                    galleryItems.forEach(item => {
+                        item.style.display = 'block';
+                    });
+                } else {
+                    galleryItems.forEach(item => {
+                        // In a real implementation, you would filter based on actual categories
+                        // This is just a demonstration
+                        const randomShow = Math.random() > 0.3;
+                        item.style.display = randomShow ? 'block' : 'none';
+                    });
+                }
+            });
+        });
+
+        // Video play functionality
+        const videoPlays = document.querySelectorAll('.video-play');
+        videoPlays.forEach(play => {
+            play.addEventListener('click', function() {
+                // In a real implementation, this would open a modal with the video
+                alert('Cette fonctionnalité ouvrirait normalement la vidéo dans une fenêtre modale.');
+            });
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    mainNav.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Animation on Scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.gallery-item, .video-item');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state for animated elements
+        document.querySelectorAll('.gallery-item, .video-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>

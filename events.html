@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitrine Culture | Événements</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <style>
+        :root {
+            --primary: #6C4B5E;  /* Mauve profond */
+            --primary-dark: #4D3445;
+            --primary-light: #8D6B7D;
+            --secondary: #E8C547;  /* Or vif */
+            --secondary-dark: #D9B43A;
+            --accent: #3A7CA5;  /* Bleu sénégalais */
+            --dark: #1E1E24;  /* Noir élégant */
+            --darker: #121216;
+            --light: #F9F7F8;  /* Blanc crème */
+            --lighter: #FFFFFF;
+            --text: #333333;
+            --text-light: #777777;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background-color: var(--lighter);
+            line-height: 1.7;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: 0.5px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.85rem;
+            border: 2px solid var(--primary);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--primary-dark);
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(108, 75, 94, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-outline::before {
+            background-color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            color: var(--dark);
+        }
+
+        .btn-secondary::before {
+            background-color: var(--secondary-dark);
+        }
+
+        .btn-secondary:hover {
+            color: var(--dark);
+        }
+
+        .section-padding {
+            padding: 120px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Header Styles */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 25px 0;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            backdrop-filter: blur(10px);
+            background-color: rgba(30, 30, 36, 0.8);
+        }
+
+        #header.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            background-color: rgba(248, 247, 249, 0.98);
+        }
+
+        #header.scrolled .logo-text {
+            color: var(--dark);
+        }
+
+        #header.scrolled #mainNav ul li a {
+            color: var(--dark);
+        }
+
+        #header.scrolled .mobile-menu-btn {
+            color: var(--dark);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 50px;
+            transition: all 0.4s ease;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white;
+            transition: all 0.4s ease;
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+        }
+
+        #mainNav ul {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        #mainNav ul li a {
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            color: white;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        #mainNav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        #mainNav ul li a:hover::after,
+        #mainNav ul li a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta .btn {
+            padding: 12px 30px;
+            font-size: 0.8rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-menu-close {
+            display: none;
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: var(--dark);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Hero Section - Événements */
+        .events-hero {
+            height: 60vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(30, 30, 36, 0.7), rgba(30, 30, 36, 0.7)), 
+                        url('images/1.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .events-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 20% 50%, transparent 0%, rgba(30, 30, 36, 0.9) 100%);
+            z-index: 1;
+        }
+
+        .events-hero-content {
+            max-width: 850px;
+            color: white;
+            position: relative;
+            z-index: 2;
+            padding-top: 100px;
+        }
+
+        .events-hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            font-weight: 800;
+        }
+
+        .events-hero-content h1 span {
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .events-hero-content h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background-color: rgba(108, 75, 94, 0.5);
+            z-index: -1;
+            transform: rotate(-1deg);
+        }
+
+        .events-hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        /* Events Section */
+        .events-page {
+            position: relative;
+            overflow: hidden;
+            background-color: var(--light);
+        }
+
+        .events-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/brushed-alum.png');
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .events-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .events-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .events-tab {
+            padding: 12px 30px;
+            background: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            color: var(--text-light);
+        }
+
+        .events-tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 10px 25px rgba(108, 75, 94, 0.3);
+            border-color: transparent;
+        }
+
+        .events-tab:hover:not(.active) {
+            color: var(--primary);
+            border-color: var(--primary-light);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 40px;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7) 100%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .event-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-card:hover::before {
+            opacity: 1;
+        }
+
+        .event-img {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .event-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .event-card:hover .event-img img {
+            transform: scale(1.15);
+        }
+
+        .event-date {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .event-card:hover .event-date {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .event-content {
+            padding: 30px;
+            position: relative;
+            z-index: 2;
+            background: white;
+        }
+
+        .event-content h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .event-card:hover .event-content h3 {
+            color: var(--primary);
+        }
+
+        .event-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .event-meta i {
+            margin-right: 8px;
+            color: var(--primary);
+        }
+
+        .event-content p {
+            margin-bottom: 25px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .event-cta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .event-price {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .event-cta .btn {
+            padding: 10px 25px;
+            font-size: 0.8rem;
+        }
+
+        .section-cta {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        /* Past Events Section */
+        .past-events {
+            margin-top: 100px;
+            padding-top: 80px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Newsletter Section */
+        .newsletter-home {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .newsletter-home::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .newsletter-home::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            right: -150px;
+            width: 400px;
+            height: 400px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .newsletter-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-home h3 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .newsletter-home p {
+            margin-bottom: 50px;
+            opacity: 0.9;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            height: 70px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0 30px;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+
+        .newsletter-form button {
+            padding: 0 40px;
+            background: var(--secondary);
+            color: var(--dark);
+            border: none;
+            border-radius: 0 50px 50px 0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-form button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .newsletter-form button:hover::before {
+            width: 100%;
+        }
+
+        .newsletter-form button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 100px 0 0;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+
+        .footer-col {
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            margin-bottom: 25px;
+            height: 60px;
+        }
+
+        .footer-about p {
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            font-size: 1.1rem;
+        }
+
+        .footer-social a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-col h4 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.05rem;
+        }
+
+        .footer-links ul li a:hover {
+            color: white;
+            padding-left: 10px;
+        }
+
+        .footer-links ul li a i {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-contact p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .footer-contact p i {
+            color: var(--secondary);
+            margin-top: 5px;
+            font-size: 1.1rem;
+        }
+
+        .footer-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .footer-gallery img {
+            border-radius: 8px;
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        .footer-gallery img:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .footer-bottom {
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+        }
+
+        .footer-bottom a {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 2px solid white;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .events-hero-content h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .section-padding {
+                padding: 100px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+
+            .events-hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .events-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            #mainNav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 320px;
+                height: 100vh;
+                background-color: var(--lighter);
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+                transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+                z-index: 1000;
+                padding: 100px 40px;
+            }
+
+            #mainNav.active {
+                right: 0;
+            }
+
+            #mainNav ul {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .mobile-menu-close {
+                display: block;
+            }
+
+            .events-hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .events-hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .events-tabs {
+                gap: 10px;
+            }
+
+            .events-tab {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .newsletter-form input {
+                border-radius: 50px;
+                margin-bottom: 15px;
+                padding: 20px 25px;
+            }
+
+            .newsletter-form button {
+                border-radius: 50px;
+                padding: 20px 25px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-padding {
+                padding: 80px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .events-hero {
+                min-height: 500px;
+            }
+
+            .events-hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .events-hero-content p {
+                font-size: 1rem;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-home h3 {
+                font-size: 2.2rem;
+            }
+
+            .back-to-top {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+           <div class="logo">
+                <img src="images/logo.png" alt="Vitrine Culture Logo" width="200">
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <button class="mobile-menu-close" id="mobileMenuClose">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="about.html">À propos</a></li>
+                    <li><a href="events.html" class="active">Événements</a></li>
+                    <li><a href="gallery.html">Galerie</a></li>
+                    <li><a href="team.html">Équipe</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="nav-cta"><a href="events.html" class="btn">Programme</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section - Événements -->
+    <section class="events-hero">
+        <div class="container">
+            <div class="events-hero-content">
+                <h1>Nos <span>Événements</span> Culturels</h1>
+                <p>Découvrez notre programmation exclusive et vivez des rencontres uniques avec les artistes et artisans de la scène culturelle sénégalaise.</p>
+                <a href="#upcoming-events" class="btn">Explorer le programme</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <section class="events-page section-padding" id="upcoming-events">
+        <div class="container">
+            <div class="section-title">
+                <h2>Événements à venir</h2>
+                <p>Dernier samedi de chaque mois à l'Espace Culturel Saint-Louis Théâtre</p>
+            </div>
+            
+            <div class="events-tabs">
+                <div class="events-tab active">Tous</div>
+                <div class="events-tab">Novembre</div>
+                <div class="events-tab">Décembre</div>
+                <div class="events-tab">Janvier</div>
+                <div class="events-tab">Février</div>
+            </div>
+            
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="images/3.jpeg" alt="Poétesse sénégalaise">
+                        <div class="event-date">25 NOV</div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Soirée littéraire avec Awa Ly</h3>
+                        <div class="event-meta">
+                            <span><i class="far fa-clock"></i> 19:00 - 22:00</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Saint-Louis Théâtre</span>
+                        </div>
+                        <p>Une immersion dans l'univers poétique d'Awa Ly, suivie d'une lecture performative de ses œuvres les plus récentes et d'un dialogue avec le public.</p>
+                        <div class="event-cta">
+                            <div class="event-price">Gratuit</div>
+                            <a href="#" class="btn">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="images/4.png" alt="Musicien sénégalais">
+                        <div class="event-date">30 DÉC</div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Session acoustique avec Pape Diouf</h3>
+                        <div class="event-meta">
+                            <span><i class="far fa-clock"></i> 20:00 - 23:00</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Saint-Louis Théâtre</span>
+                        </div>
+                        <p>Le maestro du mbalax revisite ses plus grands succès en version acoustique et dévoile les coulisses de sa création musicale.</p>
+                        <div class="event-cta">
+                            <div class="event-price">5,000 FCFA</div>
+                            <a href="#" class="btn">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="https://images.unsplash.com/photo-1536924940846-227afb31e2a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2066&q=80" alt="Artiste plasticien">
+                        <div class="event-date">27 JAN</div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Rencontre avec Ousmane Ndiaye</h3>
+                        <div class="event-meta">
+                            <span><i class="far fa-clock"></i> 18:00 - 21:00</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Galerie Arte</span>
+                        </div>
+                        <p>Découverte de l'exposition "Saint-Louis en couleurs" et discussion sur le processus créatif de l'artiste plasticien.</p>
+                        <div class="event-cta">
+                            <div class="event-price">3,000 FCFA</div>
+                            <a href="#" class="btn">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Écrivain Sénégalais">
+                        <div class="event-date">24 FÉV</div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Lecture-débat avec Mamadou Diallo</h3>
+                        <div class="event-meta">
+                            <span><i class="far fa-clock"></i> 17:00 - 20:00</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Saint-Louis Théâtre</span>
+                        </div>
+                        <p>L'écrivain présentera son dernier roman et discutera des défis de la littérature africaine contemporaine avec le public.</p>
+                        <div class="event-cta">
+                            <div class="event-price">Gratuit</div>
+                            <a href="#" class="btn">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Danseur Traditionnel">
+                        <div class="event-date">30 MAR</div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Performance de danse avec la Troupe Sabar</h3>
+                        <div class="event-meta">
+                            <span><i class="far fa-clock"></i> 18:30 - 21:30</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Place Faidherbe</span>
+                        </div>
+                        <p>Spectacle de danse traditionnelle suivi d'un atelier participatif ouvert à tous les membres du public.</p>
+                        <div class="event-cta">
+                            <div class="event-price">2,500 FCFA</div>
+                            <a href="#" class="btn">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Cinéaste Sénégalais">
+                        <div class="event-date">27 AVR</div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Projection-rencontre avec Aminata Sow</h3>
+                        <div class="event-meta">
+                            <span><i class="far fa-clock"></i> 19:00 - 22:00</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Cinéma Renaissance</span>
+                        </div>
+                        <p>Projection du dernier film de la réalisatrice suivie d'une discussion sur le cinéma africain contemporain.</p>
+                        <div class="event-cta">
+                            <div class="event-price">4,000 FCFA</div>
+                            <a href="#" class="btn">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="past-events">
+                <div class="section-title">
+                    <h2>Événements passés</h2>
+                    <p>Revivez les moments forts de nos précédentes rencontres culturelles</p>
+                </div>
+                
+                <div class="events-grid">
+                    <div class="event-card past">
+                        <div class="event-img">
+                            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Événement passé">
+                            <div class="event-date">28 OCT</div>
+                        </div>
+                        <div class="event-content">
+                            <h3>Rencontre avec Cheikh Tidiane Fall</h3>
+                            <div class="event-meta">
+                                <span><i class="far fa-clock"></i> 18:00 - 21:00</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Saint-Louis Théâtre</span>
+                            </div>
+                            <p>Le musicien traditionnel a partagé son parcours et interprété plusieurs morceaux de son répertoire.</p>
+                            <div class="event-cta">
+                                <a href="gallery.html" class="btn btn-outline">Voir les photos</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-card past">
+                        <div class="event-img">
+                            <img src="https://images.unsplash.com/photo-1536924940846-227afb31e2a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2066&q=80" alt="Événement passé">
+                            <div class="event-date">30 SEP</div>
+                        </div>
+                        <div class="event-content">
+                            <h3>Table ronde sur l'art contemporain</h3>
+                            <div class="event-meta">
+                                <span><i class="far fa-clock"></i> 16:00 - 19:00</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Galerie Arte</span>
+                            </div>
+                            <p>Discussion animée avec trois artistes plasticiens sur les enjeux de l'art contemporain en Afrique.</p>
+                            <div class="event-cta">
+                                <a href="gallery.html" class="btn btn-outline">Voir les photos</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-card past">
+                        <div class="event-img">
+                            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Événement passé">
+                            <div class="event-date">26 AOÛT</div>
+                        </div>
+                        <div class="event-content">
+                            <h3>Soirée poésie bilingue</h3>
+                            <div class="event-meta">
+                                <span><i class="far fa-clock"></i> 17:30 - 20:30</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Saint-Louis Théâtre</span>
+                            </div>
+                            <p>Cinq poètes ont partagé leurs œuvres en wolof et français, suivis d'un échange avec le public.</p>
+                            <div class="event-cta">
+                                <a href="gallery.html" class="btn btn-outline">Voir les photos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-home section-padding">
+        <div class="container newsletter-container">
+            <h3>Restez connectés</h3>
+            <p>Abonnez-vous à notre newsletter pour recevoir en avant-première les annonces de nos prochains événements et des contenus exclusifs sur la scène culturelle sénégalaise.</p>
+            
+            <form class="newsletter-form">
+                <input type="email" placeholder="Votre adresse email" required>
+                <button type="submit">S'abonner <i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col footer-about">
+                    <img src="images/logo.png" width="200" alt="Vitrine Culture Logo" class="footer-logo">
+                    <p>Vitrine Culture est une initiative culturelle innovante basée à Saint-Louis, Sénégal, dédiée à la promotion et à la célébration des artistes et créateurs locaux à travers des rencontres intimistes et des événements exclusifs.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> Notre mission</a></li>
+                        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Événements</a></li>
+                        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Galerie photos</a></li>
+                        <li><a href="team.html"><i class="fas fa-chevron-right"></i> Notre équipe</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Nous contacter</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col footer-contact">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Espace culturel Saint-Louis Théâtre, Rue Blaise Diagne, Saint-Louis, Sénégal</p>
+                    <p><i class="fas fa-phone-alt"></i> +221 33 876 54 32</p>
+                    <p><i class="fas fa-envelope"></i> contact@vitrineculture.sn</p>
+                    <p><i class="fas fa-clock"></i> Lundi-Vendredi: 9h-18h | Samedi: 10h-16h</p>
+                </div>
+                
+                <div class="footer-col footer-gallery-col">
+                    <h4>Notre univers</h4>
+                    <div class="footer-gallery">
+                         <img src="images/6.jpeg" alt="Événement 1">
+                        <img src="images/7.jpeg" alt="Événement 2">
+                        <img src="images/8.jpeg" alt="Événement 3">
+                        <img src="images/9.jpeg" alt="Événement 4">
+                        <img src="images/10.jpeg" alt="Événement 5">
+                        <img src="images/11.jpeg" alt="Événement 6">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Vitrine Culture. Tous droits réservés. | Conçu avec <i class="fas fa-heart"></i> par <a href="#">Studio Créatif</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mainNav = document.getElementById('mainNav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mainNav.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Events tab functionality
+        const eventsTabs = document.querySelectorAll('.events-tab');
+        eventsTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                eventsTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter events based on selected tab
+                const month = this.textContent.toLowerCase();
+                const allEvents = document.querySelectorAll('.events-grid .event-card:not(.past)');
+                
+                if (month === 'tous') {
+                    allEvents.forEach(event => {
+                        event.style.display = 'block';
+                    });
+                } else {
+                    allEvents.forEach(event => {
+                        const eventMonth = event.querySelector('.event-date').textContent.split(' ')[1].toLowerCase();
+                        if (eventMonth.includes(month)) {
+                            event.style.display = 'block';
+                        } else {
+                            event.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    mainNav.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Animation on Scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.event-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state for animated elements
+        document.querySelectorAll('.event-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
